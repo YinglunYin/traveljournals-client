@@ -1,0 +1,39 @@
+import React from 'react'
+import {Link, Route,useParams} from 'react-router-dom'
+import MapView from "./map-view";
+import "./test.css"
+import SearchView from "./search-view";
+import {combineReducers, createStore} from "redux";
+import mapReducer from "../../reducers/map-reducers";
+import {Provider} from "react-redux";
+import DetailsView from "./details-view";
+
+const reducer = combineReducers({
+                                    mapReducer: mapReducer
+                                })
+
+const store = createStore(reducer)
+
+const Home = () => {
+    const {placeText, lat, lng} = useParams()
+    return (
+            <Provider store={store}>
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-3">
+                            <SearchView/>
+                        </div>
+                        <div className="col-6">
+                            <MapView/>
+                        </div>
+                        <div className="col-3">
+                            <DetailsView/>
+                        </div>
+                    </div>
+                </div>
+            </Provider>
+    )
+
+}
+
+export default Home
