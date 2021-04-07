@@ -1,8 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
+import {Link, useParams, useHistory} from "react-router-dom";
 
 import "./search-bar.css"
 
 const SearchBar = () => {
+
+    const {placeText} = useParams()
+
+    const [input, setInput] = useState("")
+
+    const history = useHistory()
 
     return (
         <div className="container-fluid wbdv-searchbar-container d-flex">
@@ -10,10 +17,19 @@ const SearchBar = () => {
                 <div className="col-md-2 d-sm-none d-md-inline"/>
 
                 <div className="input-group col-md-8">
-                    <input type="text" className="wbdv-search-query form-control"
-                           placeholder="Type in a place to see journals"/>
+                    <input
+                        onChange={(e)=>setInput(e.target.value)}
+                        type="text"
+                        className="wbdv-search-query form-control"
+                        value={input}
+                        placeholder="Type in a place to see journals"/>
                     <span className="input-group-btn">
-                                    <button className="btn btn-danger wbdv-search-button" type="button">
+                                    <button
+                                        onClick={()=>{
+                                            history.push(`/search/${input}`)
+                                        }}
+                                        className="btn btn-danger wbdv-search-button"
+                                        type="button">
                                         <i className="fas fa-search"/>
                                     </button>
                     </span>

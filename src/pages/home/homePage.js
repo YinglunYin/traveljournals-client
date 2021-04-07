@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import "./home.css"
 import Title from "../../components/header/title";
 import SearchBar from "../../components/search-bar/searchbar";
 import JournalList from "../../components/journal-list/journal-list";
@@ -13,6 +14,7 @@ class HomePage extends Component {
                     <div className="col-md-2 d-sm-none d-md-inline"/>
 
                     <div className="col-md-8 p-0">
+                        <div className="wbdv-popular">Popular Journals</div>
                         <JournalList/>
                     </div>
 

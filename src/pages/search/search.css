@@ -2,10 +2,13 @@
 
 }
 
-.wbdv-search-map-container{
-    height: 400px;
-}
-
 .wbdv-search-journal-container{
 
+}
+
+.wbdv-search-map{
+    height: 500px;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    margin-top: 4px;
 }

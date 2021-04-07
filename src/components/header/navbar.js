@@ -2,47 +2,56 @@ import React from "react";
 import './navbar.css'
 import logo from "../../common/img/logo.png"
 import {Link} from "react-router-dom";
+import {Navbar, Nav, NavDropdown} from "react-bootstrap";
 
-const Navbar = () => {
+const MyNavbar = () => {
     return (
-        <div className="container-fluid wbdv-nav-container d-flex">
-            <div className="row w-100">
-                <div className="col-lg-2 d-md-none d-lg-inline"/>
+        <div className="wbdv-nav-container container-fluid p-0 ">
 
-                <div className="d-flex wbdv-nav-logo-container justify-content-center col-1">
-                    <img src={logo} alt="logo" className="wbdv-nav-logo align-self-center"/>
+            <div className="row w-100 p-0">
+                <div className="col-lg-2 d-md-none d-lg-inline p-0"/>
+
+                <div className="col-lg-8 col-12 p-0">
+                    <Navbar
+                        collapseOnSelect
+                        expand="md"
+                        bg="light"
+                        variant="light"
+                        style={{
+                            paddingLeft: '20px',
+                            paddingTop:'0px',
+                            paddingBottom:'0px'
+
+                        }}
+                    >
+                        <Navbar.Brand href="">
+                            <img src={logo} alt="logo" className="wbdv-nav-logo m-0 p-0"/>
+                        </Navbar.Brand>
+
+                        <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+                        <Navbar.Collapse id="responsive-navbar-nav">
+                            <Nav className="mr-auto">
+                                <Nav.Link><Link to="/" className="nav-link">Home</Link></Nav.Link>
+                                <Nav.Link><Link to="/journal/edit/step/1" className="nav-link">New Journal</Link></Nav.Link>
+                            </Nav>
+                            <Nav>
+                                <Nav.Link href="#deets"><Link to={"/login"}
+                                                              className="btn wbdv-nav-login-btn align-self-center">Sign
+                                    In</Link></Nav.Link>
+                                <Nav.Link eventKey={2} href="#memes">
+                                    <Link to={"/register"}
+                                          className="btn wbdv-nav-signin-btn align-self-center">Sign
+                                        Up</Link>
+                                </Nav.Link>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Navbar>
                 </div>
-
-                <div className="d-flex wbdv-nav-menus-container col-lg-4 col-sm-6">
-                    <ul className="nav">
-                        <li className="nav-item d-flex">
-                            <Link to="/" className ="wbdv-nav-menu-item nav-link align-self-center">Home</Link>
-                        </li>
-
-                        <li className="nav-item d-flex">
-                            <Link to="/journal/edit/step/1/" className ="wbdv-nav-plus-button nav-link align-self-center">
-                                <i className="fas fa-plus"/>
-                            </Link>
-                        </li>
-
-                    </ul>
-
-                </div>
-
-                <div
-                    className="wbdv-nav-login-button-container d-flex justify-content-end col-lg-3 col-sm-5">
-
-                    <Link to={"/login"}
-                          className="btn wbdv-nav-login-btn align-self-center">Sign In</Link>
-                    <Link to={"/register"}
-                          className="btn wbdv-nav-signin-btn align-self-center ml-2">Sign Up</Link>
-                </div>
-
-                <div className="col-lg-2 d-md-none d-lg-inline"/>
+                <div className="col-lg-2 d-md-none d-lg-inline p-0"/>
             </div>
         </div>
 
     )
 }
 
-export default Navbar
+export default MyNavbar

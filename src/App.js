@@ -3,7 +3,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import React from "react";
 import Login from "./pages/login/login"
 import HomePage from "./pages/home/homePage";
-import Navbar from "./components/header/navbar";
+import MyNavbar from "./components/header/navbar.js";
 import Register from "./pages/register/register";
 import Test from "./pages/test";
 import Search from "./pages/search/search";
@@ -24,7 +24,7 @@ function App() {
         <>
             <Provider store={store}>
                 <BrowserRouter>
-                    <Navbar/>
+                    <MyNavbar/>
                     <div className="wbdv-content">
                         <Route path="/" exact={true}>
                             <HomePage/>
@@ -37,7 +37,13 @@ function App() {
                             <Register/>
                         </Route>
 
-                        <Route path="/search">
+                        <Route path={[
+                            "/search",
+                            "/search/:placeText",
+                            "/search/:placeText/selected/:selected",
+                            "/search/:placeText/selected/:selected/lat/:lat/lng/:lng"
+
+                        ]} exact={true}>
                             <Search/>
                         </Route>
 
@@ -53,14 +59,6 @@ function App() {
                             <Profile/>
                         </Route>
 
-                        {/*<Route path={[*/}
-                        {/*    "/search/",*/}
-                        {/*    "/search/:placeId",*/}
-                        {/*    "/search/:placeId/lat/:lat/lng/:lng"*/}
-                        {/*]} exact={true}*/}
-                        {/*>*/}
-                        {/*    <Home/>*/}
-                        {/*</Route>*/}
                     </div>
                 </BrowserRouter>
             </Provider>

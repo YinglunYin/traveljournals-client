@@ -4,7 +4,9 @@ import "./map.css"
 import {GoogleMap, LoadScript, Marker} from '@react-google-maps/api';
 
 const MapView = (
-
+    {
+        height
+    }
 ) => {
 
     const {lat, lng} = useParams()
@@ -32,7 +34,7 @@ const MapView = (
             >
                 <GoogleMap className="test"
                     // mapContainerStyle={containerStyle}
-                           mapContainerClassName={"wbdv-map-container"}
+                           mapContainerClassName={height}
                            center={{
                                lat: place.lat,
                                lng: place.lng

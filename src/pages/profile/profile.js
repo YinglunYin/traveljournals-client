@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../../components/header/navbar";
+import Navbar from "../../components/header/navbar.js.old";
 import BasicDemo from "../../components/journal-editor/journal-editor";
 import JournalReader from "../../components/journal-editor/journal-reader";
 import ProfilePanel from "../../components/profile/profile-left-panel";

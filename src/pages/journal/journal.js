@@ -12,7 +12,11 @@ const Journal = () => {
             <div className="row p-0">
 
 
-                <Route path="/journal/edit/step/:step">
+                <Route path={[
+                    "/journal/edit/step/:step",
+                    "/journal/edit/step/:step/pin/",
+                    "/journal/edit/step/:step/pin/search/:placeText/place/:placeId/lat/:lat/lng/:lng"
+                ]} exact={true}>
                     <EditorNav/>
                     <div className="col-md-2 d-sm-none d-md-inline"/>
                     <div className="col-md-8 p-0">
@@ -21,7 +25,12 @@ const Journal = () => {
                     <div className="col-md-2 d-sm-none d-md-inline"/>
                 </Route>
                 <Route path="/journal/read">
-                    <JournalReader/>
+                    <div className="col-md-2 d-sm-none d-md-inline"/>
+                    <div className="col-md-8 p-0">
+                        <JournalReader/>
+                    </div>
+                    <div className="col-md-2 d-sm-none d-md-inline"/>
+
                 </Route>
             </div>
 

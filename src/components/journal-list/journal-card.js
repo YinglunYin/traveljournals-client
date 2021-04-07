@@ -10,9 +10,9 @@ const JournalCard = (
 ) => {
 
     return(
-        <div className="card mb-md-3 mt-3 wbdv-journal-card" >
+        <div className="card mb-md-3 mb-1 wbdv-journal-card" >
             <div className="row no-gutters">
-                <div className="col-md-3">
+                <div className="col-md-3 d-none d-md-inline">
                     <img src={image1} alt="..." className="card-img wbdv-journal-card-img"/>
                 </div>
                 <div className="col-md-9">
