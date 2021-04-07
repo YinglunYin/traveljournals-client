@@ -1,0 +1,30 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,400&display=swap');
+
+
+.container-fluid{
+    padding: 0;
+    margin: 0;
+}
+
+.container{
+    margin: 0;
+    padding: 0;
+}
+
+.row {
+    margin: 0;
+}
+
+body,
+#root,
+.wbdv-content,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.wbdv-content{
+    margin-top: 80px;
+}

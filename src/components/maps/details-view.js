@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom";
-import mapActions from "../../actions/map-actions";
+import mapActions from "../../redux/actions/map-actions";
 import {connect} from "react-redux";
 
 const DetailsView = (

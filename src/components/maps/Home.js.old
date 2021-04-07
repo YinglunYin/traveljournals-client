@@ -4,7 +4,7 @@ import MapView from "./map-view";
 import "./test.css"
 import SearchView from "./search-view";
 import {combineReducers, createStore} from "redux";
-import mapReducer from "../../reducers/map-reducers";
+import mapReducer from "../../redux/reducers/map-reducers";
 import {Provider} from "react-redux";
 import DetailsView from "./details-view";
 
@@ -15,7 +15,7 @@ const reducer = combineReducers({
 const store = createStore(reducer)
 
 const Home = () => {
-    const {placeText, lat, lng} = useParams()
+
     return (
             <Provider store={store}>
                 <div className="container-fluid">

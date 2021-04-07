@@ -1,0 +1,62 @@
+.wbdv-map-container {
+    height: 600px;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    margin-top: 4px;
+}
+
+.wbdv-search-list-container {
+
+    margin-top: 3px;
+    border-radius: 5px !important;
+    color: black !important;
+    font-family: 'Merriweather',serif;
+    font-size: 10px;
+    font-weight: 700 !important;
+
+    overflow-y: auto;
+    max-height: 560px;
+
+}
+
+.wbdv-search-list-container :hover {
+
+    margin-top: 3px;
+    border-radius: 5px !important;
+    background-color: #f39c12 !important;
+    color: white !important;
+    font-family: 'Merriweather',serif;
+    font-size: 10px;
+    font-weight: 700 !important;
+}
+
+.wbdv-search-list-item{
+    padding: 5px !important;
+}
+
+.wbdv-search-view-query{
+    padding-right: 3px;
+    padding-right: 4px \9;
+    padding-left: 3px;
+    padding-left: 4px \9;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+    margin-bottom: 0;
+    /*-webkit-border-radius: 3px;*/
+    /*-moz-border-radius: 3px;*/
+    border-radius: 5px 0 0 5px !important;
+}
+
+.wbdv-search-view-button{
+    border: #faa41f !important;
+    /** belows styles are working good */
+    padding: 2px 5px;
+    margin-top: 1px;
+    position: relative;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    border-radius: 0 5px 5px 0 !important;
+    color: white !important;
+    background: #faa41f !important;
+    z-index: 3;
+}

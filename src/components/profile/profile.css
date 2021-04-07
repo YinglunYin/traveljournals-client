@@ -1,0 +1,49 @@
+.wbdv-profile-panel{
+    height: 100%;
+    background-color: #faa41f;
+}
+
+.wbdv-profile-map{
+    width: 100%;
+    height: 400px;
+}
+
+.wbdv-profile-photo{
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+    background: wheat;
+}
+
+.wbdv-profile-panel-container{
+    padding-top: 40px;
+}
+
+.wbdv-profile-item-label{
+    font-family: 'Merriweather', serif;
+    font-weight: lighter;
+    font-size: small;
+}
+
+.wbdv-profile-text{
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-size: large;
+}
+
+.wbdv-profile-edit-title{
+    width: 100%;
+    height: 70px;
+    background-color: #faa41f;
+    color: white;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-size: larger;
+}
+
+.wbdv-profile-input-user,
+.wbdv-profile-input-pass {
+    box-shadow: none !important;
+    outline: 0px !important;
+    max-width: 193px !important;
+}

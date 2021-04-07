@@ -1,54 +1,94 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom";
-import mapActions from "../../actions/map-actions";
-import {connect} from 'react-redux'
-import "./test.css"
-import {GoogleMap, LoadScript, Marker, Autocomplete} from '@react-google-maps/api';
+import "./map.css"
+import {GoogleMap, LoadScript, Marker} from '@react-google-maps/api';
 
 const MapView = (
 
 ) => {
-    const {placeText, lat, lng} = useParams()
-    const [placeFlag, setPlace] = useState(false)
+
+    const {lat, lng} = useParams()
+    const [place, setPlace] = useState({lat: 38.29, lng: -122.09})
+
+    const [placeFlag, setFlag] = useState(false)
 
     useEffect(() => {
         if (lat !== "undefined" && typeof lat !== "undefined") {
-            setPlace(true)
-
-        } else {
-            setPlace(false)
+            setPlace({
+                         lat: parseFloat(lat),
+                         lng: parseFloat(lng)
+                     })
+            setFlag(true)
+        }else{
+            setFlag(false)
         }
     }, [lat])
 
     return (
-        placeFlag &&
         <>
-            <h1>Demo Map</h1>
-            <LoadScript
+            <LoadScriptOnlyIfNeeded
                 googleMapsApiKey="AIzaSyALbP3N77VMBFd7FxF2ppkLc9qpjjZ8qL4"
                 libraries={["places"]}
             >
                 <GoogleMap className="test"
                     // mapContainerStyle={containerStyle}
-                           mapContainerClassName={"height"}
+                           mapContainerClassName={"wbdv-map-container"}
                            center={{
-                               lat: parseFloat(lat),
-                               lng: parseFloat(lng)
+                               lat: place.lat,
+                               lng: place.lng
                            }}
-                           zoom={10}
+                           zoom={12}
                 >
 
                     { /* Child components, such as markers, info windows, etc. */
-                        <Marker position={{
-                            lat: parseFloat(lat),
-                            lng: parseFloat(lng)
+                        placeFlag && <Marker position={{
+                            lat: place.lat,
+                            lng: place.lng
                         }}/>
                     }
 
                 </GoogleMap>
-            </LoadScript>
+            </LoadScriptOnlyIfNeeded>
         </>
     )
 }
 
-export default MapView
+class LoadScriptOnlyIfNeeded extends LoadScript {
+    componentDidMount() {
+        const cleaningUp = true
+        const isBrowser = typeof document !== "undefined" // require('@react-google-maps/api/src/utils/isbrowser')
+        const isAlreadyLoaded = window.google && window.google.maps && document.querySelector('body.first-hit-completed') // AJAX page loading system is adding this class the first time the app is loaded
+        if (!isAlreadyLoaded && isBrowser) {
+            // @ts-ignore
+            if (window.google && !cleaningUp) {
+                console.error("google api is already presented")
+                return
+            }
+
+            this.isCleaningUp().then(this.injectScript)
+        }
+
+        if (isAlreadyLoaded) {
+            this.setState({ loaded: true })
+        }
+    }
+}
+//
+// function MapView() {
+//     return (
+//         <LoadScriptOnlyIfNeeded
+//             googleMapsApiKey="AIzaSyALbP3N77VMBFd7FxF2ppkLc9qpjjZ8qL4"
+//         >
+//             <GoogleMap
+//                 mapContainerStyle={containerStyle}
+//                 center={center}
+//                 zoom={10}
+//             >
+//                 { /* Child components, such as markers, info windows, etc. */ }
+//                 <></>
+//             </GoogleMap>
+//         </LoadScriptOnlyIfNeeded>
+//     )
+// }
+
+export default React.memo(MapView)
