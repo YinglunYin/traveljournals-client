@@ -55,7 +55,15 @@ function App() {
                             <Journal/>
                         </Route>
 
-                        <Route path="/profile">
+                        <Route path={[
+                            "/profile",
+                            "/profile/edit",
+                            "/profile/journals",
+                            "/profile/likes",
+                            "/profile/user/:username",
+                            "/profile/user/:username/journals",
+                            "/profile/user/:username/likes",
+                        ]}>
                             <Profile/>
                         </Route>
 

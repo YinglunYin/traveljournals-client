@@ -1,7 +1,16 @@
-import React from "react";
 import {useForm} from "react-hook-form";
+import {connect} from 'react-redux'
+import React, {useState, useEffect} from 'react'
+import {Link, useParams, useHistory} from "react-router-dom";
+import "./profile.css"
 
-const ProfileEdit = () => {
+const ProfileEdit = (
+    {
+        back = "/profile/"
+    }
+) => {
+
+    const history = useHistory()
 
     const {
         register,
@@ -13,8 +22,22 @@ const ProfileEdit = () => {
     return (
         <div className="form_container w-100 container-fluid">
 
-            <div className="wbdv-profile-edit-title row justify-content-center">
-                <h2 className="align-self-center">Edit Profile</h2>
+            <div className="wbdv-profile-edit-title-container row d-flex justify-content-between">
+
+                <button
+                    onClick={() => {
+                        history.push( "/profile/")
+                    }}
+                    className="btn wbdv-profile-edit-back-btn">
+                    <i className="fas fa-caret-left fa-2x align-self-center ml-3"/>
+                </button>
+
+                <div className="align-self-center wbdv-profile-edit-title">
+                    Edit Profile
+                </div>
+
+                <div/>
+
             </div>
 
             <div className="d-flex justify-content-center pt-5">

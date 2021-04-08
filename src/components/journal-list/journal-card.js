@@ -1,16 +1,25 @@
-import React from "react";
+import {connect} from 'react-redux'
+import React, {useState, useEffect} from 'react'
+import {Route, Link, useParams, useHistory} from "react-router-dom";
 
 import "./journal-card.css"
 import image1 from "../../common/img/journal-card-img1.jpg"
 
 const JournalCard = (
     {
-        journal
+        journal,
+        to
     }
 ) => {
 
+    const history = useHistory()
+
     return(
-        <div className="card mb-md-3 mb-1 wbdv-journal-card" >
+        <div
+            onClick={()=>{
+                history.push(to)
+            }}
+            className="card mb-md-3 mb-1 wbdv-journal-card" >
             <div className="row no-gutters">
                 <div className="col-md-3 d-none d-md-inline">
                     <img src={image1} alt="..." className="card-img wbdv-journal-card-img"/>

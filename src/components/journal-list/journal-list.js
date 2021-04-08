@@ -10,10 +10,18 @@ const JournalList = () => {
 
 
             <div className="wbdv-journal-list-container">
-                <JournalCard/>
-                <JournalCard/>
-                <JournalCard/>
-                <JournalCard/>
+                <JournalCard
+                    to={"/journal/read/journalId/test123"}
+                />
+                <JournalCard
+                    to={"/journal/read/journalId/test123"}
+                />
+                <JournalCard
+                    to={"/journal/read/journalId/test123"}
+                />
+                <JournalCard
+                    to={"/journal/read/journalId/test123"}
+                />
             </div>
 
         </div>

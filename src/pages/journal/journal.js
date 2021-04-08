@@ -1,11 +1,17 @@
-import React from "react";
-import {Route} from "react-router-dom";
+import {connect} from 'react-redux'
+import React, {useState, useEffect} from 'react'
+import {Route, Link, useParams, useHistory} from "react-router-dom";
 import "./journal.css"
 import JournalEditor from "../../components/journal-editor/journal-editor";
 import JournalReader from "../../components/journal-editor/journal-reader";
 import EditorNav from "../../components/journal-editor/editor-nav";
 
-const Journal = () => {
+const Journal = (
+    {
+        journal,
+        back,
+    }
+) => {
 
     return (
         <div className="container-fluid p-0 wbdv-journal-bg">
@@ -24,12 +30,15 @@ const Journal = () => {
                     </div>
                     <div className="col-md-2 d-sm-none d-md-inline"/>
                 </Route>
-                <Route path="/journal/read">
-                    <div className="col-md-2 d-sm-none d-md-inline"/>
-                    <div className="col-md-8 p-0">
-                        <JournalReader/>
+
+                <Route path="/journal/read/journalId/:journalId">
+                    <div className="col-md-1 d-sm-none d-md-inline"/>
+                    <div className="col-md-10 p-0">
+                        <JournalReader
+                            back=""
+                        />
                     </div>
-                    <div className="col-md-2 d-sm-none d-md-inline"/>
+                    <div className="col-md-1 d-sm-none d-md-inline"/>
 
                 </Route>
             </div>

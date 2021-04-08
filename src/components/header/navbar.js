@@ -19,8 +19,8 @@ const MyNavbar = () => {
                         variant="light"
                         style={{
                             paddingLeft: '20px',
-                            paddingTop:'0px',
-                            paddingBottom:'0px'
+                            paddingTop: '0px',
+                            paddingBottom: '0px'
 
                         }}
                     >
@@ -32,16 +32,43 @@ const MyNavbar = () => {
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="mr-auto">
                                 <Nav.Link><Link to="/" className="nav-link">Home</Link></Nav.Link>
-                                <Nav.Link><Link to="/journal/edit/step/1" className="nav-link">New Journal</Link></Nav.Link>
+                                <Nav.Link><Link to="/profile/" className="nav-link">My
+                                    Profile</Link></Nav.Link>
+                                <Nav.Link><Link to="/journal/edit/step/1" className="nav-link">New
+                                    Journal</Link></Nav.Link>
                             </Nav>
                             <Nav>
-                                <Nav.Link href="#deets"><Link to={"/login"}
-                                                              className="btn wbdv-nav-login-btn align-self-center">Sign
-                                    In</Link></Nav.Link>
-                                <Nav.Link eventKey={2} href="#memes">
-                                    <Link to={"/register"}
-                                          className="btn wbdv-nav-signin-btn align-self-center">Sign
-                                        Up</Link>
+                                <NavDropdown title="Username" style={{padding: "8px"}}
+                                             id="collasible-nav-dropdown">
+                                    <NavDropdown.Item><Link to="/profile/" className="nav-link">My
+                                        Profile</Link></NavDropdown.Item>
+                                    <NavDropdown.Item><Link to="/profile/" className="nav-link">My
+                                        Journals</Link></NavDropdown.Item>
+                                    <NavDropdown.Item><Link to="/profile/f" className="nav-link">My
+                                        likes</Link></NavDropdown.Item>
+                                </NavDropdown>
+
+                                <Nav.Link>
+                                    <Link
+                                        to={"/login"}
+                                        className="btn wbdv-nav-login-btn align-self-center"
+                                    >Sign In
+                                    </Link>
+                                </Nav.Link>
+
+                                <Nav.Link>
+                                    <Link
+                                        to={""}
+                                        className="btn wbdv-nav-login-btn align-self-center"
+                                    >Log out
+                                    </Link>
+                                </Nav.Link>
+
+                                <Nav.Link eventKey={2}>
+                                    <Link
+                                        to={"/register"}
+                                        className="btn wbdv-nav-signin-btn align-self-center"
+                                    >Sign Up</Link>
                                 </Nav.Link>
                             </Nav>
                         </Navbar.Collapse>

@@ -1,8 +1,15 @@
-import React from "react";
+import {connect} from 'react-redux'
+import React, {useState, useEffect} from 'react'
+import {Route, Link, useParams, useHistory} from "react-router-dom";
 import "./profile.css"
-import {Link} from "react-router-dom";
 
-const ProfilePanel = () => {
+
+const UserInfoPanel = (
+    {
+        editable = false,
+        userId
+    }
+) => {
 
     return (
 
@@ -19,12 +26,14 @@ const ProfilePanel = () => {
                     <div className="wbdv-profile-item-label">Email:</div>
                     <div className="wbdv-profile-text">test@test.com</div>
                 </div>
-
-                <Link to="/profile/edit">Edit</Link>
+                {
+                    editable &&
+                    <Link to="/profile/edit">Edit</Link>
+                }
 
             </div>
         </div>
     )
 }
 
-export default ProfilePanel
+export default UserInfoPanel

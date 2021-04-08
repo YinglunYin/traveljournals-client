@@ -36,3 +36,22 @@
     font-weight: 400;
     color: wheat;
 }
+
+.wbdv-journal-reader-map{
+    height: 300px;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    margin-top: 4px;
+
+}
+
+.wbdv-like-btn{
+    width: 100%;
+    background-color: #faa41f !important;
+    color: #FFFFEE !important;
+}
+
+.wbdv-reader-title-container{
+    background-color: #f39c12;
+    color: #FFFFEE;
+}

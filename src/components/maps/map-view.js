@@ -5,22 +5,29 @@ import {GoogleMap, LoadScript, Marker} from '@react-google-maps/api';
 
 const MapView = (
     {
-        height
+        height,
+        center={
+            lat: 38.29,
+            lng: -122.09
+        },
+        setPlaceFlag = false
     }
 ) => {
 
     const {lat, lng} = useParams()
-    const [place, setPlace] = useState({lat: 38.29, lng: -122.09})
+    const [place, setPlace] = useState(center)
 
     const [placeFlag, setFlag] = useState(false)
 
     useEffect(() => {
-        if (lat !== "undefined" && typeof lat !== "undefined") {
+        if ((lat !== "undefined" && typeof lat !== "undefined")) {
             setPlace({
                          lat: parseFloat(lat),
                          lng: parseFloat(lng)
                      })
             setFlag(true)
+        }else if(setPlaceFlag){
+            setPlace(center)
         }else{
             setFlag(false)
         }
