@@ -32,13 +32,13 @@ const Journal = (
                 </Route>
 
                 <Route path="/journal/read/journalId/:journalId">
-                    <div className="col-md-1 d-sm-none d-md-inline"/>
-                    <div className="col-md-10 p-0">
+                    <div className="col-lg-1 d-md-none d-lg-inline"/>
+                    <div className="col-lg-10 p-0">
                         <JournalReader
                             back=""
                         />
                     </div>
-                    <div className="col-md-1 d-sm-none d-md-inline"/>
+                    <div className="col-lg-1 d-md-none d-lg-inline"/>
 
                 </Route>
             </div>
