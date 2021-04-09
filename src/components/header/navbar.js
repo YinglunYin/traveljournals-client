@@ -1,7 +1,7 @@
-import React from "react";
 import './navbar.css'
 import logo from "../../common/img/logo.png"
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from 'react'
+import {Route, useParams, Link, useHistory} from "react-router-dom";
 import {Navbar, Nav, NavDropdown} from "react-bootstrap";
 
 const MyNavbar = () => {
@@ -10,7 +10,6 @@ const MyNavbar = () => {
 
             <div className="row w-100 p-0">
                 <div className="col-lg-2 d-md-none d-lg-inline p-0"/>
-
                 <div className="col-lg-8 col-12 p-0">
                     <Navbar
                         collapseOnSelect
@@ -37,6 +36,7 @@ const MyNavbar = () => {
                                 <Nav.Link><Link to="/journal/edit/step/1" className="nav-link">New
                                     Journal</Link></Nav.Link>
                             </Nav>
+
                             <Nav>
                                 <NavDropdown title="Username" style={{padding: "8px"}}
                                              id="collasible-nav-dropdown">

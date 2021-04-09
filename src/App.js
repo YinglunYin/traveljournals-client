@@ -12,6 +12,8 @@ import Profile from "./pages/profile/profile";
 import {combineReducers, createStore} from "redux";
 import mapReducer from "./redux/reducers/map-reducers";
 import {Provider} from "react-redux";
+import AdminHome from "./pages/admin/admin-home";
+import MyAdminNavbar from "./components/admin/admin-navbar";
 
 const reducer = combineReducers({
                                     mapReducer: mapReducer
@@ -24,16 +26,18 @@ function App() {
         <>
             <Provider store={store}>
                 <BrowserRouter>
-                    <MyNavbar/>
                     <div className="wbdv-content">
                         <Route path="/" exact={true}>
+                            <MyNavbar/>
                             <HomePage/>
                         </Route>
                         <Route path="/login">
+                            <MyNavbar/>
                             <Login/>
                         </Route>
 
                         <Route path="/register">
+                            <MyNavbar/>
                             <Register/>
                         </Route>
 
@@ -44,14 +48,17 @@ function App() {
                             "/search/:placeText/selected/:selected/lat/:lat/lng/:lng"
 
                         ]} exact={true}>
+                            <MyNavbar/>
                             <Search/>
                         </Route>
 
                         <Route path="/test" exact={true}>
+                            <MyNavbar/>
                             <Test/>
                         </Route>
 
                         <Route path="/journal">
+                            <MyNavbar/>
                             <Journal/>
                         </Route>
 
@@ -64,8 +71,17 @@ function App() {
                             "/profile/user/:username/journals",
                             "/profile/user/:username/likes",
                         ]}>
+                            <MyNavbar/>
                             <Profile/>
+
                         </Route>
+
+                        <Route path="/admin">
+                            <MyAdminNavbar/>
+                            <AdminHome/>
+                        </Route>
+
+
 
                     </div>
                 </BrowserRouter>
