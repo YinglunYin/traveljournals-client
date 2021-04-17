@@ -22,6 +22,18 @@
     background: #f39c12 !important;
 }
 
+.wbdv-cancel_btn {
+    width: 100%;
+    background: #28a745 !important;
+    font-weight: bold !important;
+    color: white !important;
+}
+
+.wbdv-cancel_btn:hover {
+    width: 100%;
+    background: #28a745 !important;
+}
+
 .wbdv-editor-step-active {
     font-family: 'Merriweather', serif;
     font-size: 35px;
@@ -51,7 +63,27 @@
     color: #FFFFEE !important;
 }
 
+.wbdv-delete-btn{
+    width: 100%;
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+.wbdv-like-num{
+    width: 100%;
+    background-color: white !important;
+    color: #f39c12 !important;
+    cursor: auto!important;
+    font-weight: bolder !important;
+}
+
 .wbdv-reader-title-container{
     background-color: #f39c12;
     color: #FFFFEE;
+}
+
+.wbdv-journal-reader-container{
+    min-height: 800px;
+    overflow: hidden;
+    margin-bottom: 20px;
 }

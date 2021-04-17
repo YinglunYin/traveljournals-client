@@ -1,8 +1,17 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import logo from "../../common/img/logo.png";
 import {useForm} from "react-hook-form";
+import {Link, useParams, useHistory} from "react-router-dom";
+import {connect, useDispatch} from "react-redux";
+import userActions from "../../redux/actions/user-actions";
+import userServer from "../../redux/services/user-services"
 
-const RegisterForm = () => {
+const RegisterForm = (
+    {
+        currentUser,
+        login
+    }
+) => {
 
     const [cachedInput, setCachedInput] = useState(
         {username: "", password1: "", password2: "", type: "user"})
@@ -14,8 +23,27 @@ const RegisterForm = () => {
         formState: {errors}
     } = useForm();
 
-    const onSubmit = data => console.log(data);
-    console.log(errors);
+    const [message, setMessage] = useState("")
+    const [messageFlag, setMessageFlag] = useState(false)
+    const [succeed, setSucceed] = useState(false)
+
+    const history = useHistory()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        // console.log("login-form")
+        // console.log(currentUser)
+        if (currentUser !== undefined && currentUser.username !== undefined) {
+            setSucceed(true)
+            if (currentUser.type === "USER") {
+                history.push("/")
+            } else if (currentUser.type === "ADMIN") {
+                history.push("/admin")
+            }
+        }
+    }, [currentUser])
+
+
 
     return (
         <div className="wbdv-login-container">
@@ -28,9 +56,19 @@ const RegisterForm = () => {
                                 className="brand_logo" alt="Logo"/>
                         </div>
                     </div>
+
                     <div className="d-flex justify-content-center form_container">
 
+
+
                         <form>
+                            {
+                                messageFlag &&
+                                <div className="row w-100 d-flex justify-content-center mb-2 mt-3 text-danger">
+                                    {message}
+                                </div>
+                            }
+
                             <div className="input-group mb-3">
                                 <div className="input-group-append">
                                     <span className="input-group-text"><i className="fas fa-user"/></span>
@@ -115,7 +153,7 @@ const RegisterForm = () => {
                                            className="form-check-input"
                                            type="radio"
                                            name="inlineRadioOptions" id="inlineRadio1"
-                                           value="user"
+                                           value="USER"
                                            {...register("usertype", { required: true })}
                                     />
                                     <label className="form-check-label"
@@ -125,7 +163,7 @@ const RegisterForm = () => {
                                     <input
                                            className="form-check-input" type="radio"
                                            name="inlineRadioOptions" id="inlineRadio2"
-                                           value="admin"
+                                           value="ADMIN"
                                            {...register("usertype", { required: true })}
                                     />
                                     <label className="form-check-label"
@@ -139,7 +177,27 @@ const RegisterForm = () => {
                             <div className="d-flex justify-content-center mt-3 login_container">
                                 <button
                                     onClick={handleSubmit((data)=>{
+                                        console.log("reg-from")
                                         console.log(data)
+                                        let user={
+                                            username:data.username,
+                                            password:data.password,
+                                            email:data.email,
+                                            type:data.usertype
+                                        }
+                                        userServer.register(user)
+                                            .then((re)=>{
+                                                console.log("reg-from-response")
+                                                console.log(re)
+                                                if(re.code===3){
+                                                    setMessage(re.message)
+                                                    setMessageFlag(true)
+
+                                                }else if(re.code ===2){
+                                                    setMessageFlag(false)
+                                                    userActions.register(dispatch, re.data)
+                                                }
+                                            })
 
                                     })}
                                     type="button"
@@ -165,4 +223,10 @@ const RegisterForm = () => {
     )
 }
 
-export default RegisterForm
+const stateToPropsMapper = (state) => {
+    return {
+        currentUser: state.userReducer.currentUser
+    }
+}
+
+export default connect(stateToPropsMapper)(RegisterForm)

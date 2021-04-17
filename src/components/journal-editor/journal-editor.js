@@ -8,11 +8,13 @@ import MapView from "../maps/map-view";
 import mapActions from "../../redux/actions/map-actions";
 import {connect} from 'react-redux'
 import mapService from '../../redux/services/map-services'
+import journalServer from "../../redux/services/journal-services"
 
 const JournalEditor = (
     {
-        selectedPlace = {test:"test"},
-        findPlaceDetail
+        selectedPlace = {test: "test"},
+        findPlaceDetail,
+        currentUser
     }
 ) => {
 
@@ -22,7 +24,13 @@ const JournalEditor = (
 
     const {placeId} = useParams();
 
+    const history = useHistory()
+
     useEffect(() => {
+        if(currentUser.username === undefined){
+            history.push("/")
+        }
+
         if (placeId !== "undefined" && typeof placeId !== "undefined") {
             findPlaceDetail(placeId)
             console.log("useEffect")
@@ -31,16 +39,28 @@ const JournalEditor = (
 
         }
 
-    }, [placeId])
+    }, [placeId, currentUser])
 
     const handelSubmission = () => {
+        let length = editorState.toText().length
+        length = length <= 140 ? length : 140
+
         let journal = {
             title: title,
-            text: editorState.toRAW(),
-            author: "test",
+            textRaw: editorState.toRAW(),
+            textHtml: editorState.toHTML(),
+            abstract: editorState.toText().substring(0, length-1),
+            author: currentUser.userId,
             place: parsePlace(selectedPlace.result)
         }
         console.log(journal)
+        journalServer.createNewJournal(journal)
+            .then((re) => {
+                console.log("journal-editor-submit-result")
+                console.log(re)
+                history.push(`/journal/journalId/${re.data.id}`)
+            })
+
     }
 
     const parsePlace = (r) => {
@@ -57,7 +77,7 @@ const JournalEditor = (
 
     return (
         <>
-            <Route path="/journal/edit/step/:step" exact={true}>
+            <Route path="/journal/newJournal/edit/step/:step" exact={true}>
                 <div className="container-fluid pt-3">
 
                     <div className="form-group">
@@ -85,15 +105,16 @@ const JournalEditor = (
                         />
                     </div>
 
-                    <Link className="btn wbdv-submit_btn mt-1" to="/journal/edit/step/2/pin/">Next
+                    <Link className="btn wbdv-submit_btn mt-1"
+                          to="/journal/newJournal/edit/step/2/pin/">Next
                         Step</Link>
 
                 </div>
             </Route>
 
             <Route path={[
-                "/journal/edit/step/:step/pin/",
-                "/journal/edit/step/:step/pin/search/:placeText/place/:placeId/lat/:lat/lng/:lng"]}
+                "/journal/newJournal/edit/step/:step/pin/",
+                "/journal/newJournal/edit/step/:step/pin/search/:placeText/place/:placeId/lat/:lat/lng/:lng"]}
                    exact={true}>
                 <div className="container-fluid p-0">
                     <div className="row p-0 m-0">
@@ -101,18 +122,18 @@ const JournalEditor = (
                         <div className="col-3 p-0">
 
                             <SearchView
-                                path="/journal/edit/step/2/pin"
+                                path="/journal/newJournal/edit/step/2/pin"
                             />
                         </div>
 
                         <div className="col-9 p-0">
                             <MapView
-                            height="wbdv-map-container"
+                                height="wbdv-map-container"
                             />
                         </div>
 
                         <button
-                            onClick={() =>{
+                            onClick={() => {
                                 handelSubmission()
                             }}
                             className="btn wbdv-submit_btn mt-1">
@@ -127,10 +148,11 @@ const JournalEditor = (
 }
 
 const stateToPropsMapper = (state) => {
-    console.log("stp")
-    console.log(state)
+    // console.log("stp")
+    // console.log(state)
     return {
-        selectedPlace: state.mapReducer.selectedPlace
+        selectedPlace: state.mapReducer.selectedPlace,
+        currentUser: state.userReducer.currentUser
     }
 }
 

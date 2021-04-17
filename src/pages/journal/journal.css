@@ -1,4 +1,23 @@
 .wbdv-journal-bg{
-    background-color: #FFFFEE;
+    background-color: #f8f9fa;
     height: 100%;
+}
+
+.wbdv-journal-reader-title-wrap{
+
+}
+
+.wbdv-journal-reader-title-content{
+
+}
+
+.wbdv-journal-reader-title-text{
+    font-size: 40px;
+    font-family: 'Lora', serif;
+    font-weight: bolder;
+}
+
+.wbdv-journal-reader-title-author{
+    font-size: 20px;
+    font-family: 'Lora', serif;
 }

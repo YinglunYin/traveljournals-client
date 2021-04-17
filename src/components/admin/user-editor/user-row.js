@@ -24,6 +24,7 @@ const UserRow = (
         user.type = newType
         // updateUser(user)
     }
+
     const dropEdit =() =>{
         setEditing(false)
         setNewUsername(user.username)
@@ -72,23 +73,35 @@ const UserRow = (
                     {!editing &&
                      newType
                     }
-                    {editing &&
-                     <input
+                    {editing && newType === "USER" &&
+                     <select
                          onChange={(event) => setNewType(event.target.value)}
-                         value={newType}
-                         className="form-control"/>
+                         id="inputState"
+                         className="form-control">
+                         <option value="USER" selected>USER</option>
+                         <option value="ADMIN">ADMIN</option>
+                     </select>
+                    }
+                    {editing && newType === "ADMIN" &&
+                     <select
+                        onChange={(event) => setNewType(event.target.value)}
+                        id="inputState"
+                        className="form-control">
+                        <option value="USER">USER</option>
+                        <option value="ADMIN" selected>ADMIN</option>
+                        </select>
                     }
                 </td>
-                <td>
-                    <Link to={`/admin/editor/user/${user._id}/likes`}>
-                        <i className="fas fa-caret-right"/>
-                    </Link>
-                </td>
-                <td>
-                    <Link to={`/admin/editor/user/${user._id}/journals`}>
-                        <i className="fas fa-caret-right"/>
-                    </Link>
-                </td>
+                {/*<td>*/}
+                {/*    <Link to={`/admin/editor/user/${user._id}/likes`}>*/}
+                {/*        <i className="fas fa-caret-right"/>*/}
+                {/*    </Link>*/}
+                {/*</td>*/}
+                {/*<td>*/}
+                {/*    <Link to={`/admin/editor/user/${user._id}/journals`}>*/}
+                {/*        <i className="fas fa-caret-right"/>*/}
+                {/*    </Link>*/}
+                {/*</td>*/}
                 <td>
                     {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit"/>}
                     {editing && <i onClick={() => saveEdit()} className="fas fa-check"/>}

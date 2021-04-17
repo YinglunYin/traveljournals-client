@@ -7,9 +7,20 @@ import "./profile.css"
 const UserInfoPanel = (
     {
         editable = false,
-        userId
+        username,
+        email
     }
 ) => {
+
+    // force to update
+    const [_f, setF] = useState(0);
+
+    useEffect(()=>{
+        // console.log("user-info-panel:")
+        // console.log(username)
+        // console.log(email)
+        setF(_f + 1);
+    },[email])
 
     return (
 
@@ -22,13 +33,13 @@ const UserInfoPanel = (
 
                 <div>
                     <div className="wbdv-profile-item-label">UserName:</div>
-                    <div className="wbdv-profile-text">test user</div>
+                    <div className="wbdv-profile-text">{username}</div>
                     <div className="wbdv-profile-item-label">Email:</div>
-                    <div className="wbdv-profile-text">test@test.com</div>
+                    <div className="wbdv-profile-text">{email}</div>
                 </div>
                 {
                     editable &&
-                    <Link to="/profile/edit">Edit</Link>
+                    <Link to={`/profile/user/${username}/edit`}>Edit</Link>
                 }
 
             </div>

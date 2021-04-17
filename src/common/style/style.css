@@ -1,6 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 
 .container-fluid{
     padding: 0;
@@ -23,6 +23,7 @@ html {
     margin: 0;
     padding: 0;
     height: 100%;
+    background-color: #f8f9fa;
 }
 
 .wbdv-content{

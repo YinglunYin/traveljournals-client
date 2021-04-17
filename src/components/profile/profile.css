@@ -65,4 +65,5 @@
 .wbdv-journal-list{
     overflow-y: auto;
     max-height: 700px;
+    min-height: 200px;
 }

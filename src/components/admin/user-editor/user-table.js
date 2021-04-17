@@ -4,9 +4,27 @@ import {connect} from 'react-redux'
 import './user-table.css';
 import UserRow from "./user-row";
 
+import UserServer from "../../../redux/services/user-services"
+
 const UserTable = (
-    userlist = []
+
 ) => {
+
+    const [userlist, setUserlist] = useState([])
+
+    useEffect(()=>{
+        UserServer.findAllUsers()
+            .then((re)=>{
+                if(re.code === 30){
+                    setUserlist(re.data)
+                }
+            })
+    })
+
+    const deleteUser = (userId) => {
+        UserServer.deleteUser(userId)
+    }
+
     return (
         <div className={'container-fulid wbdv-courselist-title-container'}>
             <table className="table">
@@ -16,23 +34,29 @@ const UserTable = (
                     <th scope="col">Password</th>
                     <th scope="col">Email</th>
                     <th scope="col">Type</th>
-                    <th scope="col">Likes</th>
-                    <th scope="col">Journals</th>
+                    {/*<th scope="col">Likes</th>*/}
+                    {/*<th scope="col">Journals</th>*/}
                     <th scope="col"></th>
                 </tr>
                 </thead>
 
                 <tbody>
 
-                <UserRow
-                    user={{
-                        username: "test",
-                        password: "12345",
-                        email: "test@test.com",
-                        type: "user"
-                    }}
-                />
+                {
+                    userlist.map((user)=>{
+                        return(
+                            <UserRow
 
+                                user={{
+                                    username: user.username,
+                                    password: user.password,
+                                    email: user.email,
+                                    type: user.type
+                                }}
+                            />
+                        )
+                    })
+                }
                 </tbody>
             </table>
         </div>

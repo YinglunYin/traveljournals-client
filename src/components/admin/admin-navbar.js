@@ -3,8 +3,21 @@ import logo from "../../common/img/logo.png"
 import React, {useEffect, useState} from 'react'
 import {Route, useParams, Link, useHistory} from "react-router-dom";
 import {Navbar, Nav, NavDropdown} from "react-bootstrap";
+import {connect, useDispatch} from "react-redux";
+import userActions, {logout} from "../../redux/actions/user-actions";
 
-const MyAdminNavbar = () => {
+const MyAdminNavbar = (
+    {
+        currentUser = {},
+        login,
+        logout
+    }
+) => {
+
+    const dispatch = useDispatch()
+    const history = useHistory()
+
+
     return (
         <div className="wbdv-admin-nav-container container-fluid p-0 ">
 
@@ -39,17 +52,21 @@ const MyAdminNavbar = () => {
                             </Nav>
 
                             <Nav>
+
                                 <Nav.Link>
                                     <Link
-                                        to={"/admin/profile"}
+                                        to={"/admin/"}
                                         className="nav-link"
-                                    >My Profile
+                                    >{currentUser.username}
                                     </Link>
                                 </Nav.Link>
 
 
                                 <Nav.Link>
                                     <Link
+                                        onClick={() => {
+                                            logout()
+                                        }}
                                         to={"/"}
                                         className="btn wbdv-admin-nav-login-btn align-self-center"
                                     >Log out
@@ -65,4 +82,19 @@ const MyAdminNavbar = () => {
     )
 }
 
-export default MyAdminNavbar
+const stateToPropsMapper = (state) => {
+    return {
+        currentUser: state.userReducer.currentUser,
+        login: state.userReducer.login
+    }
+}
+
+const dispatchToPropsMapper = (dispatch) => {
+    return {
+        logout: () => {
+            userActions.logout(dispatch)
+        }
+    }
+}
+
+export default connect(stateToPropsMapper, dispatchToPropsMapper)(MyAdminNavbar)

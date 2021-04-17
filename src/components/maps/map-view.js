@@ -28,6 +28,7 @@ const MapView = (
             setFlag(true)
         }else if(setPlaceFlag){
             setPlace(center)
+            setFlag(true)
         }else{
             setFlag(false)
         }

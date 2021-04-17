@@ -90,5 +90,15 @@
     padding-top: 4px;
     max-height: 500px;
     overflow-y: auto;
-padding-left: 0;
+    padding-left: 0;
+}
+
+.wbdv-image-wrap{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.wbdv-image-wrap img{
+    max-width: 100%;
+    height: auto;
 }
