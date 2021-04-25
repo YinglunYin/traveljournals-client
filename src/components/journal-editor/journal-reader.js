@@ -31,6 +31,8 @@ const JournalReader = (
 
     const [likeNum, setLikeNum] = useState(0)
 
+    const [likeFlag, setLikeFlag] = useState(false)
+
     const [show, setShow] = useState(false)
 
     useEffect(() => {
@@ -40,9 +42,17 @@ const JournalReader = (
                 console.log(re.data)
                 setJournal(re.data)
                 setLikeNum(re.data.like_num)
+
+                console.log(currentUser)
+                console.log(re.data.liker.indexOf(currentUser.userId))
+
+                if (re.data.liker.indexOf(currentUser.userId) > -1) {
+                    setLikeFlag(true)
+                }
+
                 setShow(true)
             })
-    }, [])
+    }, [currentUser])
 
     const parsingDate = (date) => {
         let t = new Date(date)
@@ -117,23 +127,26 @@ const JournalReader = (
                         <div className="braft-output-content mt-3"
                              dangerouslySetInnerHTML={{__html: journal.textHtml}}/>
 
-                        {
-                            currentUser.username !== undefined &&
-                            currentUser.username !== journal.author.username &&
-                            <div className="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center">
+                            {
+                                currentUser.username !== undefined &&
+                                currentUser.username !== journal.author.username &&
+                                !likeFlag &&
+
                                 <button
                                     onClick={() => {
                                         if (currentUser.username === undefined) {
                                             history.push("/login")
                                         } else {
                                             journalServer.likeJournal({
-                                                                          userId: currentUser.userId,
+                                                                          username: currentUser.username,
                                                                           journalId: journalId,
                                                                           likeFlag: "like"
                                                                       })
                                                 .then((re) => {
                                                     if (re.code === 16) {
                                                         setLikeNum(likeNum + 1)
+                                                        setLikeFlag(true)
                                                     } else if (re.code === 15) {
 
                                                     }
@@ -143,11 +156,40 @@ const JournalReader = (
                                     className="btn wbdv-like-btn w-25">
                                     <i className="fas fa-thumbs-up"/>
                                 </button>
-                                <span className="btn wbdv-like-num w-25">
+                            }
+
+                            {
+                                currentUser.username !== undefined &&
+                                currentUser.username !== journal.author.username &&
+                                likeFlag &&
+                                <button
+                                    onClick={() => {
+                                        if (currentUser.username === undefined) {
+                                            history.push("/login")
+                                        } else {
+                                            journalServer.likeJournal({
+                                                                          username: currentUser.username,
+                                                                          journalId: journalId,
+                                                                          likeFlag: "dislike"
+                                                                      })
+                                                .then((re) => {
+                                                    if (re.code === 16) {
+                                                        setLikeNum(likeNum - 1)
+                                                        setLikeFlag(false)
+                                                    } else if (re.code === 15) {
+
+                                                    }
+                                                })
+                                        }
+                                    }}
+                                    className="btn wbdv-dislike-btn w-25">
+                                    <i className="fas fa-thumbs-down"/>
+                                </button>
+                            }
+                            <span className="btn wbdv-like-num w-25">
                                     {likeNum}
-                                </span>
-                            </div>
-                        }
+                            </span>
+                        </div>
 
                         {
                             currentUser.username === journal.author.username &&

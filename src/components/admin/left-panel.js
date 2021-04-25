@@ -23,7 +23,7 @@ const LeftPanel = () => {
 
     const history = useHistory()
     return (
-        <div className="wbdv-admin-leif-panel-container p-0">
+        <div className="wbdv-admin-leif-panel-container p-0 position-fixed w-100">
             <div className="container-fluid p-0">
                 {
                     userActive &&
@@ -51,7 +51,7 @@ const LeftPanel = () => {
                     !journalActive &&
                     <button
                         onClick={() => {
-                            history.push("/admin/editor/journal")
+                            history.push("/admin/editor/journal/journals")
                         }
                         }
                         className={`list-group-item list-group-item-action p-3 font-weight-bold wbdv-admin-left-panel-item `}>
@@ -62,7 +62,7 @@ const LeftPanel = () => {
                     journalActive &&
                     <button
                         onClick={() => {
-                            history.push("/admin/editor/journal")
+                            history.push("/admin/editor/journal/journals")
                         }
                         }
                         className={`list-group-item list-group-item-action p-3 font-weight-bold wbdv-admin-left-panel-item-active `}>

@@ -14,7 +14,7 @@ const Test = () => {
             <button
                 className="btn btn-primary"
                 onClick={()=>{
-                    journalServer.findPlaceJournal("ChIJxeyK9Z3wloAR_gOA7SycJC0")
+                    userServer.deleteUser("6082972978f4f92cd7b22878")
                         .then((re)=>{
                             console.log("test")
                             console.log(re)

@@ -1,5 +1,7 @@
 .wbdv-journal-card{
-    cursor: pointer
+    cursor: pointer;
+    max-height: 200px;
+    overflow: hidden;
 }
 
 .wbdv-journal-card-img{

@@ -1,5 +1,5 @@
-// const API = "http://localhost:52134/api/users"
-const API = "https://traveljournals-server.herokuapp.com/api/users"
+const API = "http://localhost:52134/api/users"
+// const API = "https://traveljournals-server.herokuapp.com/api/users"
 
 const login = (user) =>
     fetch(`${API}/login`, {
@@ -104,7 +104,7 @@ const findUserJournal = (username) => {
     return fetch(`${API}/journals`, {
         method: 'POST',
         body: JSON.stringify({
-                                 username:username
+                                 username: username
                              }),
         headers: {
             'content-type': 'application/json'
@@ -118,7 +118,7 @@ const findUserLikes = (username) => {
     return fetch(`${API}/likes`, {
         method: 'POST',
         body: JSON.stringify({
-                                 username:username
+                                 username: username
                              }),
         headers: {
             'content-type': 'application/json'
@@ -131,9 +131,7 @@ const findUserLikes = (username) => {
 const findAllUsers = () => {
     return fetch(`${API}/`, {
         method: 'POST',
-        body: JSON.stringify({
-
-                             }),
+        body: JSON.stringify({}),
         headers: {
             'content-type': 'application/json'
         }
@@ -142,12 +140,10 @@ const findAllUsers = () => {
     })
 }
 
-const deleteUser = () => {
+const deleteUser = (userId) => {
     return fetch(`${API}/delete`, {
         method: 'POST',
-        body: JSON.stringify({
-
-                             }),
+        body: JSON.stringify({userId: userId}),
         headers: {
             'content-type': 'application/json'
         }
@@ -157,7 +153,16 @@ const deleteUser = () => {
 }
 
 const api = {
-    login, logout, register, currentUser, findProfile, updateProfile,findUserJournal,findUserLikes,findAllUsers
+    login,
+    logout,
+    register,
+    currentUser,
+    findProfile,
+    updateProfile,
+    findUserJournal,
+    findUserLikes,
+    findAllUsers,
+    deleteUser
 };
 
 export default api;

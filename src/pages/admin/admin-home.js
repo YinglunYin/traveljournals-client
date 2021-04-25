@@ -12,18 +12,23 @@ const AdminHome = () => {
         <Route path={
             [
                 "/admin",
-                "/admin/editor/:editor",
-                "/admin/editor/:editor/likes"
+                "/admin/editor/:editor/",
+                "/admin/editor/:editor/username/:username",
+                "/admin/editor/:editor/username/:username/likes",
+                "/admin/editor/:editor/username/:username/journals",
+                "/admin/editor/:editor/journals",
+                "/admin/editor/:editor/journalId/:journalId",
+                "/admin/editor/:editor/journalId/:journalId/edit",
             ]
         } exact={true}>
 
-            <div className="wbdv-admin-container container-fluid p-0">
+            <div className="wbdv-admin-container container-fluid p-0 m-0">
                 <div className="row p-0 wbdv-height-100">
-                    <div className="col-2 p-0">
+                    <div className="col-2 p-0 m-0">
                         <LeftPanel/>
                     </div>
 
-                    <div className="col-10 p-0">
+                    <div className="col-10 p-0 m-0">
                         <Editor/>
                     </div>
                 </div>

@@ -16,20 +16,20 @@ const UserRow = (
     const [newEmail, setNewEmail] = React.useState(user.email)
     const [newType, setNewType] = React.useState(user.type)
 
-    const saveEdit =() =>{
+    const saveEdit = () => {
         setEditing(false)
         user.username = newUsername
         user.password = newPassword
         user.email = newEmail
         user.type = newType
-        // updateUser(user)
+        updateUser(user, user.id)
     }
 
-    const dropEdit =() =>{
+    const dropEdit = () => {
         setEditing(false)
         setNewUsername(user.username)
         setNewPassword(user.password)
-        setNewEmail(user.mail)
+        setNewEmail(user.email)
         setNewType(user.type)
     }
 
@@ -37,15 +37,15 @@ const UserRow = (
         <>
             <tr>
                 <td>
-                    {!editing &&
-                     newUsername
+                    {
+                        newUsername
                     }
-                    {editing &&
-                     <input
-                         onChange={(event) => setNewUsername(event.target.value)}
-                         value={newUsername}
-                         className="form-control"/>
-                    }
+                    {/*{editing &&*/}
+                    {/* <input*/}
+                    {/*     onChange={(event) => setNewUsername(event.target.value)}*/}
+                    {/*     value={newUsername}*/}
+                    {/*     className="form-control"/>*/}
+                    {/*}*/}
                 </td>
                 <td>
                     {!editing &&
@@ -69,43 +69,48 @@ const UserRow = (
                          className="form-control"/>
                     }
                 </td>
+                {/*<td>*/}
+                {/*    {!editing &&*/}
+                {/*     newType*/}
+                {/*    }*/}
+                {/*    {editing && newType === "USER" &&*/}
+                {/*     <select*/}
+                {/*         onChange={(event) => setNewType(event.target.value)}*/}
+                {/*         id="inputState"*/}
+                {/*         className="form-control">*/}
+                {/*         <option value="USER" selected>USER</option>*/}
+                {/*         <option value="ADMIN">ADMIN</option>*/}
+                {/*     </select>*/}
+                {/*    }*/}
+                {/*    {editing && newType === "ADMIN" &&*/}
+                {/*     <select*/}
+                {/*        onChange={(event) => setNewType(event.target.value)}*/}
+                {/*        id="inputState"*/}
+                {/*        className="form-control">*/}
+                {/*        <option value="USER">USER</option>*/}
+                {/*        <option value="ADMIN" selected>ADMIN</option>*/}
+                {/*        </select>*/}
+                {/*    }*/}
+                {/*</td>*/}
                 <td>
-                    {!editing &&
-                     newType
-                    }
-                    {editing && newType === "USER" &&
-                     <select
-                         onChange={(event) => setNewType(event.target.value)}
-                         id="inputState"
-                         className="form-control">
-                         <option value="USER" selected>USER</option>
-                         <option value="ADMIN">ADMIN</option>
-                     </select>
-                    }
-                    {editing && newType === "ADMIN" &&
-                     <select
-                        onChange={(event) => setNewType(event.target.value)}
-                        id="inputState"
-                        className="form-control">
-                        <option value="USER">USER</option>
-                        <option value="ADMIN" selected>ADMIN</option>
-                        </select>
-                    }
+                    <Link to={`/admin/editor/user/username/${user.username}/likes`}>
+                        <i className="fas fa-caret-right"/>
+                    </Link>
                 </td>
-                {/*<td>*/}
-                {/*    <Link to={`/admin/editor/user/${user._id}/likes`}>*/}
-                {/*        <i className="fas fa-caret-right"/>*/}
-                {/*    </Link>*/}
-                {/*</td>*/}
-                {/*<td>*/}
-                {/*    <Link to={`/admin/editor/user/${user._id}/journals`}>*/}
-                {/*        <i className="fas fa-caret-right"/>*/}
-                {/*    </Link>*/}
-                {/*</td>*/}
                 <td>
-                    {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit"/>}
-                    {editing && <i onClick={() => saveEdit()} className="fas fa-check"/>}
-                    {editing && <i onClick={() => dropEdit()} className="fas fa-times"/>}
+                    <Link to={`/admin/editor/user/username/${user.username}/journals`}>
+                        <i className="fas fa-caret-right"/>
+                    </Link>
+                </td>
+                <td>
+                    {!editing && <i onClick={() => setEditing(true)}
+                                    className="fas fa-edit wbdv-edit-icon mr-1"/>}
+                    {!editing && <i onClick={() => deleteUser(user.id)}
+                                    className="fas fa-trash wbdv-delete-icon"/>}
+                    {editing && <i onClick={() => saveEdit()}
+                                   className="fas fa-check wbdv-ok-icon mr-1"/>}
+                    {editing && <i onClick={() => dropEdit()}
+                                   className="fas fa-times wbdv-delete-icon"/>}
                 </td>
             </tr>
 

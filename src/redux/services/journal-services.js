@@ -1,5 +1,5 @@
-// const API = "http://localhost:52134/api/journals"
-const API = "https://traveljournals-server.herokuapp.com/api/journals"
+const API = "http://localhost:52134/api/journals"
+// const API = "https://traveljournals-server.herokuapp.com/api/journals"
 
 const createNewJournal = (journal) => {
     return fetch(`${API}/createJournal`, {
@@ -32,7 +32,7 @@ const updateJournal = (journal) => {
         headers: {
             'content-type': 'application/json'
         },
-    }).then((re)=>{
+    }).then((re) => {
         return re.json()
     })
 }
@@ -44,7 +44,7 @@ const likeJournal = (data) => {
         headers: {
             'content-type': 'application/json'
         },
-    }).then((re)=>{
+    }).then((re) => {
         return re.json()
     })
 }
@@ -52,11 +52,11 @@ const likeJournal = (data) => {
 const findPopularJournal = (num) => {
     return fetch(`${API}/popular`, {
         method: 'POST',
-        body: JSON.stringify({num:num}),
+        body: JSON.stringify({num: num}),
         headers: {
             'content-type': 'application/json'
         },
-    }).then((re)=>{
+    }).then((re) => {
         return re.json()
     })
 }
@@ -64,11 +64,11 @@ const findPopularJournal = (num) => {
 const deleteJournal = (id) => {
     return fetch(`${API}/delete`, {
         method: 'POST',
-        body: JSON.stringify({id:id}),
+        body: JSON.stringify({id: id}),
         headers: {
             'content-type': 'application/json'
         },
-    }).then((re)=>{
+    }).then((re) => {
         return re.json()
     })
 }
@@ -80,13 +80,33 @@ const findPlaceJournal = (id) => {
         headers: {
             'content-type': 'application/json'
         },
-    }).then((re)=>{
+    }).then((re) => {
         return re.json()
     })
 }
 
+const findAllJournals = () => {
+    return fetch(`${API}/journals`, {
+        method: 'POST',
+        body: JSON.stringify({}),
+        headers: {
+            'content-type': 'application/json'
+        },
+    }).then((re) => {
+        return re.json()
+    })
+}
+
+
 const api = {
-    createNewJournal, findJournalById, updateJournal, likeJournal, findPopularJournal, deleteJournal,findPlaceJournal
+    createNewJournal,
+    findJournalById,
+    updateJournal,
+    likeJournal,
+    findPopularJournal,
+    deleteJournal,
+    findPlaceJournal,
+    findAllJournals
 };
 
 export default api;

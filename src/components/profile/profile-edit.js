@@ -43,7 +43,7 @@ const ProfileEdit = (
 
                 <button
                     onClick={() => {
-                        history.push("/profile/")
+                        history.push(`/profile/user/${username}`)
                     }}
                     className="btn wbdv-profile-edit-back-btn">
                     <i className="fas fa-caret-left fa-2x align-self-center ml-3"/>

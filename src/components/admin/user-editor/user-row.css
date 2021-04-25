@@ -8,3 +8,18 @@
     font-weight: bold;
     color: #6B6B6B;
 }
+
+.wbdv-delete-icon{
+    cursor: pointer;
+    color: #c0392b;
+}
+
+.wbdv-edit-icon{
+    cursor: pointer;
+    color: #faa41f!important;
+}
+
+.wbdv-ok-icon{
+    cursor: pointer;
+    color: #28a745!important;
+}

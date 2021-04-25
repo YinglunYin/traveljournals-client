@@ -1,25 +1,19 @@
 import 'braft-editor/dist/index.css'
-import './journal-editor.css'
+import './editor-admin.css'
 import React, {useEffect, useState} from 'react'
 import {Route, useParams, Link, useHistory} from "react-router-dom";
 import BraftEditor from 'braft-editor'
-import SearchView from "../maps/search-view";
-import MapView from "../maps/map-view";
-import mapActions from "../../redux/actions/map-actions";
-import {connect} from 'react-redux'
-import mapService from '../../redux/services/map-services'
-import journalServer from "../../redux/services/journal-services"
 
-const JournalEditor2 = (
+import journalServer from "../../../redux/services/journal-services"
+
+const Editor3 = (
     {
-        selectedPlace = {test: "test"},
-        findPlaceDetail,
         currentUser,
     }
 ) => {
 
     const [editorState, setEditorState] = useState(BraftEditor.createEditorState(''));
-    const [output, setOutput] = useState("");
+
     const [title, setTitle] = useState("");
     const [journal, setJournal] = useState({
                                                author: {username: ""}
@@ -31,9 +25,7 @@ const JournalEditor2 = (
     const history = useHistory()
 
     useEffect(() => {
-        if(currentUser.username === undefined){
-            history.push("/")
-        }
+
         journalServer.findJournalById(journalId)
             .then((re) => {
                 setJournal(re.data)
@@ -53,7 +45,6 @@ const JournalEditor2 = (
             textRaw: editorState.toRAW(),
             textHtml: editorState.toHTML(),
             abstract: editorState.toText().substring(0, length - 1),
-            author: currentUser.userId,
             place: journal.place
         }
         console.log("update")
@@ -63,7 +54,7 @@ const JournalEditor2 = (
                 console.log("journal-editor-submit-result")
                 console.log(re)
                 if (re.code === 14) {
-                    history.push(`/journal/journalId/${journalId}`)
+                    history.push(`/admin/editor/journal/journalId/${journalId}`)
                 }
             })
 
@@ -71,9 +62,20 @@ const JournalEditor2 = (
 
     return (
         <>
+            <div className="row p-0 wbdv-reader-title-container justify-content-between">
+                <div className="p-0">
+                    <button
+                        onClick={() => {
+                            history.goBack()
+                        }}
+                        className="btn wbdv-profile-edit-back-btn">
+                        <i className="fas fa-caret-left fa-2x align-self-center ml-3"/>
+                    </button>
+                </div>
+            </div>
             {
                 show &&
-                <div className="container-fluid pt-3">
+                <div className="container-fluid p-3 m-0 wbdv-editor-admin-container">
 
                     <div className="form-group">
                         <label htmlFor="journal-title" className="font-weight-bold">Title:</label>
@@ -94,7 +96,6 @@ const JournalEditor2 = (
                             value={editorState}
                             onChange={(editorState) => {
                                 setEditorState(editorState)
-                                setOutput(editorState.toHTML())
                             }}
                             language="en"
                         />
@@ -124,13 +125,4 @@ const JournalEditor2 = (
 
 }
 
-const stateToPropsMapper = (state) => {
-    // console.log("stp")
-    // console.log(state)
-    return {
-        selectedPlace: state.mapReducer.selectedPlace,
-        currentUser: state.userReducer.currentUser
-    }
-}
-
-export default connect(stateToPropsMapper)(JournalEditor2)
+export default Editor3
