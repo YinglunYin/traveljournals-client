@@ -73,7 +73,7 @@ const Profile = (
                 </Route>
 
                 <Route path={"/profile/user/:username/edit"} exact={true}>
-                    <div className="col-md-8 h-100">
+                    <div className="col-md-10 h-100">
                         <ProfileEdit
                             back={`/profile/user/${username}`}
                             username={userProfile.username}
