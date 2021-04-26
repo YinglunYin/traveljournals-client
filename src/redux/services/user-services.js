@@ -1,5 +1,5 @@
-const API = "http://localhost:52134/api/users"
-//const API = "https://traveljournals-server.herokuapp.com/api/users"
+// const API = "http://localhost:52134/api/users"
+const API = "https://traveljournals-server.herokuapp.com/api/users"
 
 const login = (user) =>
     fetch(`${API}/login`, {
