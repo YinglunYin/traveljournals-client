@@ -153,7 +153,7 @@ const JournalReader = (
                                                 })
                                         }
                                     }}
-                                    className="btn wbdv-like-btn w-25">
+                                    className="btn wbdv-dislike-btn w-25">
                                     <i className="fas fa-thumbs-up"/>
                                 </button>
                             }
@@ -182,8 +182,8 @@ const JournalReader = (
                                                 })
                                         }
                                     }}
-                                    className="btn wbdv-dislike-btn w-25">
-                                    <i className="fas fa-thumbs-down"/>
+                                    className="btn wbdv-like-btn w-25">
+                                    <i className="fas fa-thumbs-up"/>
                                 </button>
                             }
                             <span className="btn wbdv-like-num w-25">

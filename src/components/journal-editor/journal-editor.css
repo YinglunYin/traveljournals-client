@@ -65,8 +65,9 @@
 
 .wbdv-dislike-btn{
     width: 100%;
-    background-color: #faa41f !important;
-    color: #FFFFEE !important;
+    background-color: #FFFFEE !important;
+    color: #faa41f !important;
+    border: 2px solid #faa41f !important;
 }
 
 .wbdv-delete-btn{

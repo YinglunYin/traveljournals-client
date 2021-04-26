@@ -1,5 +1,5 @@
-// const API = "http://localhost:52134/api/journals"
-const API = "https://traveljournals-server.herokuapp.com/api/journals"
+const API = "http://localhost:52134/api/journals"
+// const API = "https://traveljournals-server.herokuapp.com/api/journals"
 
 const createNewJournal = (journal) => {
     return fetch(`${API}/createJournal`, {
