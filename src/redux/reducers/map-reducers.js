@@ -1,4 +1,4 @@
-import {FIND_PLACE_BY_TEXT, FIND_PLACE_DETAIL, findPlaceListByText} from "../actions/map-actions";
+import {FIND_PLACE_BY_TEXT, FIND_PLACE_DETAIL, EMPTY_SEARCH_LISH} from "../actions/map-actions";
 
 const initialState = {
     placeList: [
@@ -21,6 +21,12 @@ const mapReducer = (state = initialState, action) =>{
                 ...state,
                 selectedPlace: action.selectedPlace
             }
+        case EMPTY_SEARCH_LISH:
+            return{
+                ...state,
+                placeList: []
+            }
+
         default:
             return state
     }

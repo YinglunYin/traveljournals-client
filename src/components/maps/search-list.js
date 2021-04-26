@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom";
-import mapActions from "../../redux/actions/map-actions";
-import {connect} from 'react-redux'
+import mapActions, {emptySearchList} from "../../redux/actions/map-actions";
+import {connect, useDispatch} from 'react-redux'
 import "./map.css"
 import PlaceCard from "./place-card";
 
@@ -20,12 +20,14 @@ const SearchList = (
     const {placeText} = useParams();
     const [searchPlace, setSearchPlace] = useState(placeText);
 
+    const dispatch = useDispatch()
+
     useEffect(() => {
         if (placeText !== "undefined" && typeof placeText !== "undefined") {
             setSearchPlace(placeText)
             findPlaceListByText(placeText)
         } else {
-
+            mapActions.emptySearchList(dispatch)
         }
 
     }, [placeText])
@@ -42,7 +44,9 @@ const SearchList = (
                         let lng = place.geometry.location.lng
 
                         return (
-                            <a onClick={() => {
+                            <a
+                                key={place.place_id}
+                                onClick={() => {
                                 history.push(
                                     `${path}/${placeText}/selected/${placeId}/lat/${lat}/lng/${lng}`)
                             }}>
@@ -71,6 +75,9 @@ const dispatchToPropsMapper = (dispatch) => {
     return {
         findPlaceListByText: (placeText) => {
             mapActions.findPlaceListByText(dispatch, placeText)
+        },
+        emptySearchList: () => {
+            mapActions.emptySearchList(dispatch)
         }
     }
 }

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom";
-import mapActions from "../../redux/actions/map-actions";
-import {connect} from 'react-redux'
+import mapActions, {emptySearchList} from "../../redux/actions/map-actions";
+import {connect, useDispatch} from 'react-redux'
 import "./map.css"
 
 const SearchView = (
@@ -16,17 +16,21 @@ const SearchView = (
 
     const history = useHistory()
 
-    const {placeText} = useParams();
+    const {placeText, placeId} = useParams();
     const [searchPlace, setSearchPlace] = useState(placeText);
+
+    const dispatch = useDispatch()
 
     // console.log(placeText)
 
     useEffect(() => {
         if (placeText !== "undefined" && typeof placeText !== "undefined") {
+            console.log("search-view")
+            console.log(placeText)
             setSearchPlace(placeText)
             findPlaceListByText(placeText)
         } else {
-
+            mapActions.emptySearchList(dispatch)
         }
 
     }, [placeText])
@@ -68,9 +72,12 @@ const SearchView = (
                                             `${path}/search/${searchPlace}/place/${place.place_id}/lat/${place.geometry.location.lat}/lng/${place.geometry.location.lng}`)
                                     }
                                 }
-                                className={"list-group-item list-group-item-action wbdv-search-list-item"}>
+                                className={`list-group-item list-group-item-action ${placeId
+                                                                                     === place.place_id
+                                                                                     ? "wbdv-search-list-item-active"
+                                                                                     : "wbdv-search-list-item"}`}>
                                 {/*<Link to={`${path}/search/${searchPlace}/place/${place.place_id}/lat/${place.geometry.location.lat}/lng/${place.geometry.location.lng}`}>*/}
-                                    {place.name}
+                                {place.name}
                                 {/*</Link>*/}
                             </button>
                         )
@@ -91,7 +98,10 @@ const dispatchToPropsMapper = (dispatch) => {
     return {
         findPlaceListByText: (placeText) => {
             mapActions.findPlaceListByText(dispatch, placeText)
-        }
+        },
+        // emptySearchList: () => {
+        //     mapActions.emptySearchList(dispatch)
+        // }
     }
 }
 

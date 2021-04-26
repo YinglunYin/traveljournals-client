@@ -29,6 +29,7 @@ const PlaceJournal = () => {
                 journalList.map((journal) => {
                     return (
                         <JournalCard
+                            key={journal._id}
                             title={journal.title}
                             abstract={journal.abstract}
                             img={journal.img}

@@ -30,8 +30,14 @@
     font-weight: 700 !important;
 }
 
-.wbdv-search-list-item {
+.wbdv-search-list-item{
     padding: 5px !important;
+}
+
+.wbdv-search-list-item-active{
+    padding: 5px !important;
+    background-color: #f39c12 !important;
+    color: white !important;
 }
 
 .wbdv-search-view-query {
@@ -50,7 +56,10 @@
 .wbdv-search-view-button {
     border: #faa41f !important;
     /** belows styles are working good */
-    padding: 2px 5px;
+
+    height: 36px;
+    padding: 6px 12px;
+
     margin-top: 1px;
     position: relative;
     /* IE7-8 doesn't have border-radius, so don't indent the padding */

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link, useParams, useHistory} from "react-router-dom";
 
 import "./search-bar.css"
@@ -10,6 +10,14 @@ const SearchBar = () => {
     const [input, setInput] = useState("")
 
     const history = useHistory()
+
+    useEffect(()=>{
+        console.log("placeText")
+        console.log(placeText)
+        if(placeText!==undefined && placeText!=="undefined"){
+            setInput(placeText)
+        }
+    },[placeText])
 
     return (
         <div className="container-fluid wbdv-searchbar-container d-flex">
