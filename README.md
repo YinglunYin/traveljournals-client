@@ -1,6 +1,6 @@
 # Project Name
 ## Travel Journal
-# Link: https://traveljournals-client.herokuapp.com/
+### Link: https://traveljournals-client.herokuapp.com/
 
 # Project Description
 Travel Journals is a platform for people to create and share their travel journals.
