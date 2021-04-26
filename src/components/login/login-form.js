@@ -142,7 +142,7 @@ const LoginForm = (
 
                     <div className="mt-4">
                         <div className="d-flex justify-content-center links">
-                            Don't have an account? <a href="#" className="ml-2">Sign Up</a>
+                            Don't have an account? <Link to="/register" className="ml-2">Sign Up</Link>
                         </div>
                     </div>
                 </div>

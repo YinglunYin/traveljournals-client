@@ -214,7 +214,7 @@ const RegisterForm = (
 
                     <div className="mt-4">
                         <div className="d-flex justify-content-center links">
-                            Already have an account? <a href="#" className="ml-2">Login</a>
+                            Already have an account? <Link to="/login" className="ml-2">Login</Link>
                         </div>
                     </div>
                 </div>
